@@ -6,18 +6,14 @@ phases:
       # install node 16
       - echo install node 16.x ...
       # - curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash - &&\
-      - sudo yum install -y nodejs
+      # - sudo yum install -y nodejs
       # install yarn
       # - echo install yarn...
       # - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
       # - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
       # - apt install --no-install-recommends yarn
-
-  pre_build:
-    commands:
-      # install dependencies
-      - echo install dependencies...
       - npm install --force
+      - echo install dependencies...
 
   build:
     commands:
@@ -25,6 +21,10 @@ phases:
       - echo running build commands...
       - npm run build
       - rm -r node_modules
+
+  post_build:
+    commands:
+      #post build commands
 
 artifacts:
   files:
